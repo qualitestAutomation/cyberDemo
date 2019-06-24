@@ -15,6 +15,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +27,7 @@ public class ExampleTest extends DefaultTestClass {
 
     private LoginActivity loginActivity;
     public Logger logger = Logger.getLogger(this.getClass());
+    private String fullPathtoFile;
 
     @Test
     public void ChromeTest() {
@@ -109,7 +113,24 @@ public class ExampleTest extends DefaultTestClass {
             order.sendKeys("***trackorders***");
             WebElement track = driverManager.waitUntilWithCondition ("clickable", By.id("trackButton"));
             track.click();
+            DriverManager drivermanager = new DriverManager();
+             boolean serch = drivermanager.findLog("***FROMserch***","/Users/ehudkon/Downloads/juice-shop-master/logs/access.log.2019-06-23");
+             boolean coment =  drivermanager.findLog("***comment***","/Users/ehudkon/Downloads/juice-shop-master/logs/access.log.2019-06-23");
+             boolean  user = drivermanager.findLog(register.email.get(0),"/Users/ehudkon/Downloads/juice-shop-master/logs/access.log.2019-06-23");
+             boolean password = drivermanager.findLog("Aa123456","/Users/ehudkon/Downloads/juice-shop-master/logs/access.log.2019-06-23");
+            boolean tracKorders = drivermanager.findLog("***trackorders***","/Users/ehudkon/Downloads/juice-shop-master/logs/access.log.2019-06-23");
+            if (serch || coment ||user || password || tracKorders ) {
+                System.out.println("test passd");
+            }
+            else
+                throw new Exception("test faild");
+
+
+
+
+
             finelizeTest();
+
             // Thread.sleep(8000);
 
         } catch (Exception e) {

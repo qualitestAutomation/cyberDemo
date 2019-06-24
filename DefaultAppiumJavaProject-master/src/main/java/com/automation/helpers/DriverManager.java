@@ -1366,4 +1366,51 @@ public class DriverManager {
         }
     }
 
+    private BufferedReader getBufferReader( String fullPathtoFile) throws IOException {
+        BufferedReader bufferedReader = null;
+
+        // FileReader reads text files in the default encoding.
+        FileReader fileReader =
+                new FileReader(fullPathtoFile);
+
+        // Always wrap FileReader in BufferedReader.
+        bufferedReader =
+                new BufferedReader(fileReader);
+
+        return bufferedReader;
+    }
+
+    public boolean findLog(String whatToFind,String fullPathtoFile) {
+        Boolean found = false;
+        BufferedReader bufferedReader = null;
+        try {
+            String line = null;
+            // Always wrap FileReader in BufferedReader.
+            bufferedReader = getBufferReader(fullPathtoFile);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains(whatToFind)) {
+                    found = true;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            logger.info(
+                    "Unable to open file");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            logger.info(
+                    "Error reading file '");
+            // Or we could just do this:
+            ex.printStackTrace();
+        } finally {
+            // Always close files.
+            try {
+                bufferedReader.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return found;
+    }
+
 }
