@@ -1,0 +1,43 @@
+group 'Deepinstinct'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+sourceSets {
+    jars
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: '6.9.10'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+    compile group: 'io.appium', name: 'java-client', version: '4.1.2'
+    compile 'com.testdroid:testdroid-api:2.9'
+    compile group: 'org.json', name: 'json', version: '20141113'
+    compile group: 'com.relevantcodes', name: 'extentreports', version: '2.41.1'
+    compile group: 'com.fasterxml.uuid', name: 'java-uuid-generator', version: '3.1.4'
+    compile group: 'log4j', name: 'log4j', version: '1.2.12'
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+test {
+    useTestNG() {
+    }
+    testLogging {
+        // Show that tests are run in the command-line output
+        events 'started', 'passed', 'failed'
+    }
+}

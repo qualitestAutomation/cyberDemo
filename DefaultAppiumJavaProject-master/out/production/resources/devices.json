@@ -1,0 +1,48 @@
+[
+  {
+    "appPackage": "com.untappdllc.app",
+    "appWaitPackage": "com.untappdllc.app",
+    "appActivity": "com.untappdllc.app.MainActivity",
+    "appWaitActivity": "com.untappdllc.app.MainActivity",
+    "deviceName": "Samsung7Edge",
+    "fullReset": true,
+    "platformVersion": "6.0.1",
+    "automationName": "Appium",
+    "browserName": "",
+    "platformName": "Android",
+    "udid": "ad0617024472b30b01"
+  },
+  {
+    "platformName": "iOS",
+    "platformVersion": "10.0.2",
+    "hasSim": false,
+    "udid": "4998deda4b5c37242030626b10e62df8858a5ed7",
+    "bp": 6209,
+    "bundleId": "NA",
+    "deviceName": "iPhone",
+    "browserName": "",
+    "automationName": "XCUITest",
+    "fullReset": false,
+    "clearSystemFiles": true,
+    "xcodeConfigFile": "./XCUITest.xcconfig",
+    "usePrebuiltWDA": true,
+    "preventWDAAttachments": true
+  },
+  {
+    "platformName": "iOS",
+    "platformVersion": "10.1.1",
+    "hasSim": false,
+    "udid": "b42bd88453b043b08d386603c2752843ec165ee6",
+    "bp": 6213,
+    "bundleId": "NA",
+    "deviceName": "iPhone6S",
+    "browserName": "",
+    "automationName": "XCUITest",
+    "fullReset": false,
+    "clearSystemFiles": true,
+    "xcodeConfigFile": "./XCUITest.xcconfig",
+    "usePrebuiltWDA": true,
+    "preventWDAAttachments": true
+  }
+]
+

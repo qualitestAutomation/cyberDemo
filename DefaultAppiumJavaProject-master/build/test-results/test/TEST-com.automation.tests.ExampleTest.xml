@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.automation.tests.ExampleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-06-23T10:35:02" hostname="h-MacBook-Pro-sl-ehud.local" time="5.444">
+  <properties/>
+  <testcase name="ChromeTest" classname="com.automation.tests.ExampleTest" time="5.444"/>
+  <system-out><![CDATA[asa1561286107057@gmail.com
+finelizeTest on thread udid:null
+Done on thread: udid:null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
