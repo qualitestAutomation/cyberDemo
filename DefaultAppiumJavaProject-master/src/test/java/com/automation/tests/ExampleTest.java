@@ -109,40 +109,6 @@ public class ExampleTest extends DefaultTestClass {
             order.sendKeys("***trackorders***");
             WebElement track = driverManager.waitUntilWithCondition ("clickable", By.id("trackButton"));
             track.click();
-
-
-
-
-
-
-
-
-         /*   Hompage hompage = new Hompage(driverManager);
-            hompage.ClosePopup("driver");
-            Login login = new Login(driverManager);
-            login.clickLogin("driver");
-            login.clicknotregisteryet("driver");
-            Register register = new Register(driverManager);
-            register.regg("driver");
-
-            driverManager.startDriver(DriverMode.WEB,"","driver1");
-            driverManager.navigateTo("http://localhost:3000","driver1");
-
-            //Hompage hompage1 = new Hompage(driverManager);
-            hompage.ClosePopup("driver1");
-//            Login login1 = new Login(driverManager);
-            login.clickLogin("driver1");
-            login.clicknotregisteryet("driver1");
-//            Register register1 = new Register(driverManager);
-            register.regg("driver1");
-            login.fillogin(register.email.get(1),"Aa123456","driver1",false);
-
-            driverManager.startDriver(DriverMode.WEB,"","driver2");
-            driverManager.navigateTo("http://localhost:3000","driver2");
-            hompage.ClosePopup("driver2");
-            login.clickLogin("driver2");
-            login.fillogin(register.email.get(1),"Aa123456","driver2",true);
-*/
             finelizeTest();
             // Thread.sleep(8000);
 
