@@ -1391,10 +1391,12 @@ public class DriverManager {
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.contains(whatToFind)) {
                     found = true;
-                    System.out.println("we found what we are looking"+' '+ line.toString());
-                    break;
+                    System.out.println("we found what we are looking" + ' ' + line.toString());
+                    return found;
                 }
             }
+            System.out.println("we don't found what we are looking");
+
         } catch (FileNotFoundException ex) {
             logger.info(
                     "Unable to open file");

@@ -123,6 +123,7 @@ public class ExampleTest extends DefaultTestClass {
              boolean  user = driverManager.findLog(register.email.get(0),logName);
              boolean password = driverManager.findLog("Aa123456",logName);
             boolean tracKorders = driverManager.findLog("***trackorders***",logName);
+
             if (serch || coment ||user || password || tracKorders ) {
                 System.out.println("test passd");
             }

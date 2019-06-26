@@ -37,6 +37,7 @@ public class Login extends DefaultActivity {
        if ((logout.size() > 0)&& checklogin==true)
        {
            throw new Exception("test faild");
+
        }
        else  System.out.println("test passd");
     }
