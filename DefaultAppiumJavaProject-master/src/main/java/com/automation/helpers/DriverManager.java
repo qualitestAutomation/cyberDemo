@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -257,17 +258,17 @@ public class DriverManager {
                     break;
                 case WEB:
                     if (currentDriver.equals("driver")) {
-                        driver = new ChromeDriver();
+                        driver = new FirefoxDriver();
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
-                        driver1 = new ChromeDriver();
+                        driver1 = new FirefoxDriver();
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
-                        driver2 = new ChromeDriver();
+                        driver2 = new FirefoxDriver();
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
