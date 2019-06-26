@@ -46,7 +46,7 @@ public class DriverManager {
 
     public boolean isMobile;
     private DesiredCapabilities capabilities;
-    private WebDriver driver = null;
+    protected WebDriver driver = null;
     public WebDriver driver1 = null;
     public WebDriver driver2 = null;
     public WebDriverWait wait = null;
@@ -398,7 +398,7 @@ public class DriverManager {
         htmlReporter.closeTest();
     }
 
-    public void closeDriver() {
+    public void closeDriver(WebDriver driver) {
         try {
             driver.quit();
         } catch (Exception e) {

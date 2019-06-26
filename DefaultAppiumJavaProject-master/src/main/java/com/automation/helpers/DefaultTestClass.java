@@ -57,7 +57,9 @@ public class DefaultTestClass {
 
     @AfterMethod()
     public void closeAppiumSession() {
-       // driverManager.closeDriver();
+        driverManager.closeDriver(driverManager.driver1);
+        driverManager.closeDriver(driverManager.driver);
+        driverManager.closeDriver(driverManager.driver2);
         driverManager.closeNode();
         driverManager.closeTest();
         driverManager.closeTestReport();
