@@ -35,7 +35,7 @@ public class ExampleTest extends DefaultTestClass {
     public void ChromeTest() {
         try {
             if (!driverManager.isMobile) {
-                driverManager.navigateTo("http://localhost:3000","driver");
+                driverManager.navigateTo("http://10.0.0.20:3000","driver");
 
             }
             // loginActivity = new LoginActivity(driverManager);
@@ -50,7 +50,7 @@ public class ExampleTest extends DefaultTestClass {
             register.regg("driver");
 
             driverManager.startDriver(DriverMode.WEB,"","driver1");
-            driverManager.navigateTo("http://localhost:3000","driver1");
+            driverManager.navigateTo("http://10.0.0.20:3000","driver1");
 
             //Hompage hompage1 = new Hompage(driverManager);
             hompage.ClosePopup("driver1");
@@ -62,7 +62,7 @@ public class ExampleTest extends DefaultTestClass {
             login.fillogin(register.email.get(1),"Aa123456","driver1",false);
 
             driverManager.startDriver(DriverMode.WEB,"","driver2");
-            driverManager.navigateTo("http://localhost:3000","driver2");
+            driverManager.navigateTo("http://10.0.0.20:3000","driver2");
             hompage.ClosePopup("driver2");
             login.clickLogin("driver2");
             login.fillogin(register.email.get(1),"Aa123456","driver2",true);
@@ -81,7 +81,7 @@ public class ExampleTest extends DefaultTestClass {
     public void ChromeTest1  () {
         try {
             if (!driverManager.isMobile) {
-                driverManager.navigateTo("http://localhost:3000","driver");
+                driverManager.navigateTo("http://10.0.0.20:3000","driver");
 
             }
             // loginActivity = new LoginActivity(driverManager);
@@ -116,7 +116,7 @@ public class ExampleTest extends DefaultTestClass {
             WebElement track = driverManager.waitUntilWithCondition ("clickable", By.id("trackButton"));
             track.click();
            // DriverManager drivermanager = new DriverManager();
-           // String logName = "/Users/ehudkon/Downloads/juice-shop-master/logs/access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            //String logName = "/Users/ehudkon/Downloads/juice-shop-master/logs/access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String logName = "C:\\Users\\User\\Downloads\\juice-shop-master\\juice-shop-master\\jlogs\\jaccess.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
              boolean serch = driverManager.findLog("***FROMserch***",logName);
