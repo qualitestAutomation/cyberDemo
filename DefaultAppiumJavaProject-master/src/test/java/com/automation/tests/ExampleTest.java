@@ -63,8 +63,12 @@ public class ExampleTest extends DefaultTestClass {
             driverManager.startDriver(DriverMode.WEB,"","driver2");
             driverManager.navigateTo("http://localhost:3333","driver2");
             hompage.ClosePopup("driver2");
-            login.clickLogin("driver2");
-            login.fillogin(register.email.get(1),"Aa123456","driver2",true);
+
+            boolean logined = login.validateAlreadylogin("driver2");
+            if (!logined) {
+                login.clickLogin("driver2");
+                login.fillogin(register.email.get(1), "Aa123456", "driver2", true);
+            }
 
             finelizeTest();
             // Thread.sleep(8000);
@@ -80,7 +84,7 @@ public class ExampleTest extends DefaultTestClass {
     public void ChromeTest1  () {
         try {
             if (!driverManager.isMobile) {
-                driverManager.navigateTo("http://localhost:3333","driver");
+               driverManager.navigateTo("http://localhost:3333","driver");
 
             }
             // loginActivity = new LoginActivity(driverManager);

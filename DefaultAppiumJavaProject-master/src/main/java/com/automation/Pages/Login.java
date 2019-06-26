@@ -22,9 +22,21 @@ public class Login extends DefaultActivity {
         WebElement Reg = manager.getCurrentDriver(driverName).findElement(By.cssSelector("body > app-root > div > mat-sidenav-container > mat-sidenav-content > app-login > div > mat-card > a:nth-child(3)"));
         Reg.click();
     }
+
+    public boolean validateAlreadylogin(String drivername){
+        List<WebElement> logout = manager.getCurrentDriver(drivername).findElements(By.xpath("//*[@id=\"navbarLogoutButton\"]/span"));
+
+        if (logout.size() > 0 && logout.get(0).getText().toLowerCase().contains("logout"))
+        {
+            System.out.println("validating logined: text: " + logout.get(0).getText());
+            return true;
+
+        }else{
+            return false;
+        }
+    }
     
     public void fillogin(String user ,String password,String drivername,boolean checklogin) throws Exception {
-        
         WebElement Email = manager.getCurrentDriver(drivername).findElement(By.id("email"));
         Email.sendKeys(user);
 
