@@ -36,7 +36,6 @@ public class ExampleTest extends DefaultTestClass {
         try {
             if (!driverManager.isMobile) {
                 driverManager.navigateTo("http://10.0.0.20:3000","driver");
-
             }
             // loginActivity = new LoginActivity(driverManager);
             //loginActivity.login("jenkinsman", "jenkins1234");
