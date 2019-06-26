@@ -20,7 +20,6 @@ import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -229,7 +228,7 @@ public class DriverManager {
     }
 
     private void setSelenium() {
-        System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/resources/geckodriver");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver"));
     }
 
     public void navigateTo(String url,String  currentDriver) {
@@ -258,17 +257,17 @@ public class DriverManager {
                     break;
                 case WEB:
                     if (currentDriver.equals("driver")) {
-                        driver = new FirefoxDriver();
+                        driver = new ChromeDriver();
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
-                        driver1 = new FirefoxDriver();
+                        driver1 = new ChromeDriver();
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
-                        driver2 = new FirefoxDriver();
+                        driver2 = new ChromeDriver();
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
