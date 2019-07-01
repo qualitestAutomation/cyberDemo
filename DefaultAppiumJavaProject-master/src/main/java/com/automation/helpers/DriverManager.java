@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -264,26 +265,23 @@ public class DriverManager {
                     driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
                     break;
                 case WEB:
-                    capabilities.setCapability("network.proxy.http", "82.80.139.21");
-                    capabilities.setCapability("network.proxy.http", "10.0.0.20");
+                    ChromeOptions chromeOptions = new ChromeOptions();
 
-                    capabilities.setCapability("network.proxy.http_port", "7070");
-                    capabilities.setCapability("network.proxy.http_port", "21361");
-
-
-                    capabilities.setCapability("webdriver.chrome.args", Arrays.asList("--verbose --whitelisted-ips=''"));
+                    chromeOptions.addArguments("--verbose");
+                    chromeOptions.addArguments("--whitelisted-ips=''");
+                    chromeOptions.addArguments("--proxy-server=82.80.139.21:7070");
                     if (currentDriver.equals("driver")) {
-                        driver = new ChromeDriver(capabilities);
+                        driver = new ChromeDriver(chromeOptions);
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
-                        driver1 = new ChromeDriver(capabilities);
+                        driver1 = new ChromeDriver(chromeOptions);
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
-                        driver2 = new ChromeDriver(capabilities);
+                        driver2 = new ChromeDriver(chromeOptions);
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
