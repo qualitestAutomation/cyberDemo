@@ -1,6 +1,7 @@
 package com.automation.helpers;
 
 
+import com.google.api.client.util.DateTime;
 import com.google.common.base.Predicate;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.AppiumDriver;
@@ -30,6 +31,11 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -1380,16 +1386,17 @@ public class DriverManager {
         return bufferedReader;
     }
 
-    public boolean findLog(String whatToFind,String fullPathtoFile) {
+    public boolean findLog(String whatToFind, String fullPathtoFile, Date currentTime) {
         Boolean found = false;
         BufferedReader bufferedReader = null;
         try {
             String line = null;
             // Always wrap FileReader in BufferedReader.
             bufferedReader = getBufferReader(fullPathtoFile);
-
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains(whatToFind)) {
+                Date fileTime = new SimpleDateFormat("d/MMM/yyyy:HH:mm:ss").parse(line.substring(9,29));
+
+                if (line.contains(whatToFind) && (fileTime.after(currentTime))) {
                     found = true;
                     System.out.println("we found what we are looking" + ' ' + line.toString());
                     return found;
@@ -1406,6 +1413,8 @@ public class DriverManager {
                     "Error reading file '");
             // Or we could just do this:
             ex.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         } finally {
             // Always close files.
             try {
