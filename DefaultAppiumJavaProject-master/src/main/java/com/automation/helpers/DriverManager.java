@@ -1393,8 +1393,12 @@ public class DriverManager {
             String line = null;
             // Always wrap FileReader in BufferedReader.
             bufferedReader = getBufferReader(fullPathtoFile);
+            Pattern r = Pattern.compile("\\d{2}/[A-Za-z]+/2019:\\d{2}:\\d{2}:\\d{2}");
             while ((line = bufferedReader.readLine()) != null) {
-                Date fileTime = new SimpleDateFormat("d/MMM/yyyy:HH:mm:ss").parse(line.substring(9,29));
+                // Now create matcher object.
+                Matcher m = r.matcher(line);
+                m.find();
+                Date fileTime = new SimpleDateFormat("d/MMM/yyyy:HH:mm:ss").parse(m.group(0)/*line.substring(9,29)*/);
 
                 if (line.contains(whatToFind) && (fileTime.after(currentTime))) {
                     found = true;

@@ -117,7 +117,7 @@ public class ExampleTest extends DefaultTestClass {
         try {
             if (!driverManager.isMobile) {
                driverManager.navigateTo("http://localhost:3333","driver");
-                //driverManager.navigateTo("http://localhost:3000","driver");
+               // driverManager.navigateTo("http://localhost:3000","driver");
 
             }
             Date currentTime = new Date();
