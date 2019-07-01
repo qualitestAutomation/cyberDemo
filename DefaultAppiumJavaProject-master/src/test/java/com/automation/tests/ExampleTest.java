@@ -45,7 +45,7 @@ public class ExampleTest extends DefaultTestClass {
         try {
             if (!driverManager.isMobile) {
                 driverManager.navigateTo("http://localhost:3333","driver");
-                //driverManager.navigateTo("http://localhost:3000","driver");
+              //  driverManager.navigateTo("http://localhost:3000","driver");
             }
             // loginActivity = new LoginActivity(driverManager);
             //loginActivity.login("jenkinsman", "jenkins1234");
@@ -117,7 +117,7 @@ public class ExampleTest extends DefaultTestClass {
         try {
             if (!driverManager.isMobile) {
                driverManager.navigateTo("http://localhost:3333","driver");
-               // driverManager.navigateTo("http://localhost:3000","driver");
+              //  driverManager.navigateTo("http://localhost:3000","driver");
 
             }
             Date currentTime = new Date();
@@ -159,33 +159,30 @@ public class ExampleTest extends DefaultTestClass {
             String logName = "/home/ubuntu/Documents/juice-shop-master/logs/access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
              boolean serch = driverManager.findLog("***FROMserch***",logName,currentTime);
-             boolean serchurl = driverManager.findLog("%22FROMserch%22",logName,currentTime);
-             boolean serchbase64 = driverManager.findLog("KioqFROMserchKioq",logName,currentTime);
-             boolean serchhexa = driverManager.findLog("2a2a2aROMserch2a2a2a",logName,currentTime);
+           //  boolean serchurl = driverManager.findLog("%22FROMserch%22",logName,currentTime);
+             boolean serchbase64 = driverManager.findLog("KioqRlJPTXNlcmNoKioqIg==",logName,currentTime);
+             boolean serchhexa = driverManager.findLog("2a2a2a46524f4d73657263682a2a2a",logName,currentTime);
              //  String a = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd”))
              boolean coment =  driverManager.findLog("***comment***",logName,currentTime);
-            boolean comenturl = driverManager.findLog("%22coment%22",logName,currentTime);
-            boolean comentbase64 = driverManager.findLog("KioqcomentKioq",logName,currentTime);
-            boolean comenthexa = driverManager.findLog("2a2a2acoment2a2a2a",logName,currentTime);
+            //boolean comenturl = driverManager.findLog("%22coment%22",logName,currentTime);
+            boolean comentbase64 = driverManager.findLog("KioqY29tbWVudCoqKg==",logName,currentTime);
+            boolean comenthexa = driverManager.findLog("2a2a2a636f6d6d656e742a2a2a",logName,currentTime);
              boolean  user = driverManager.findLog(register.email.get(0),logName,currentTime);
-            boolean userurl = driverManager.findLog("%22user%22",logName,currentTime);
-            boolean userbase64 = driverManager.findLog("KioquserKioq",logName,currentTime);
-            boolean userhexa = driverManager.findLog("2a2a2auser2a2a2a",logName,currentTime);
              boolean password = driverManager.findLog("Aa123456",logName,currentTime);
-            boolean passwordurl = driverManager.findLog("%22password%22",logName,currentTime);
-            boolean passwordbase64 = driverManager.findLog("KioqpasswordKioq",logName,currentTime);
-            boolean passwordhexa = driverManager.findLog("2a2a2apassword2a2a2a",logName,currentTime);
+           // boolean passwordurl = driverManager.findLog("%22password%22",logName,currentTime);
+            boolean passwordbase64 = driverManager.findLog("QWExMjM0NTY=",logName,currentTime);
+            boolean passwordhexa = driverManager.findLog("4161313233343536",logName,currentTime);
 
             boolean tracKorders = driverManager.findLog("***trackorders***",logName,currentTime);
-            boolean tracKordersurl = driverManager.findLog("%22trackorders%22",logName,currentTime);
-            boolean tracKordersbase64 = driverManager.findLog("KioqtrackordersKioq",logName,currentTime);
-            boolean tracKordershexa = driverManager.findLog("2a2a2arackorders2a2a2a",logName,currentTime);
+            //boolean tracKordersurl = driverManager.findLog("%22trackorders%22",logName,currentTime);
+            boolean tracKordersbase64 = driverManager.findLog("KioqdHJhY2tvcmRlcnMqKio=",logName,currentTime);
+            boolean tracKordershexa = driverManager.findLog("2a2a2a747261636b6f72646572732a2a2a",logName,currentTime);
 
-            if (serch || coment ||user || password || tracKorders || serchurl || serchbase64 || serchhexa || userurl || userbase64 || userhexa || passwordurl || passwordbase64 || passwordhexa || tracKordersurl || tracKordersbase64 || tracKordershexa) {
-                System.out.println("test passd");
+            if (serch || coment ||user || password || tracKorders || serchbase64 || serchhexa || passwordbase64 || passwordhexa || tracKordersbase64 || tracKordershexa) {
+                throw new Exception("test faild");
             }
             else
-                throw new Exception("test faild");
+                System.out.println("test passd");
 
 
 
