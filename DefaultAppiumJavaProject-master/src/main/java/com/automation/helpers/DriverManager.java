@@ -153,6 +153,10 @@ public class DriverManager {
         try {
             this.mode = driverMode;
             capabilities = new DesiredCapabilities();
+            capabilities.setCapability("network.proxy.http", "82.80.139.21");
+            capabilities.setCapability("network.proxy.http_port", "7070");
+            capabilities.setCapability("webdriver.chrome.args", Arrays.asList("--verbose --whitelisted-ips=''"));
+
             if (driverMode == DriverMode.WEB) {
                 setSelenium();
             } else {
@@ -235,9 +239,6 @@ public class DriverManager {
 
     private void setSelenium() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver"));
-        capabilities.setCapability("network.proxy.http", "82.80.139.21");
-        capabilities.setCapability("network.proxy.http_port", "7070");
-        capabilities.setCapability("webdriver.chrome.args", Arrays.asList("--verbose --whitelisted-ips=''"));
 
     }
 
