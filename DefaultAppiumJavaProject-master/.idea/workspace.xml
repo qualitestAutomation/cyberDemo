@@ -23,29 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/automation/helpers/DefaultTestClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/automation/helpers/DriverMode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/automation/helpers/DriverManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="254" column="70" selection-start-line="254" selection-start-column="70" selection-end-line="254" selection-end-column="70" />
+            <state relative-caret-position="383">
+              <caret line="279" lean-forward="true" selection-start-line="279" selection-end-line="279" />
             </state>
           </provider>
         </entry>
@@ -454,7 +436,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/automation/helpers/DriverManager.java</url>
-          <line>1420</line>
+          <line>1432</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -575,8 +557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/automation/helpers/DriverManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="254" column="70" selection-start-line="254" selection-start-column="70" selection-end-line="254" selection-end-column="70" />
+        <state relative-caret-position="383">
+          <caret line="279" lean-forward="true" selection-start-line="279" selection-end-line="279" />
         </state>
       </provider>
     </entry>

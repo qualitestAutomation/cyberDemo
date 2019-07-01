@@ -237,6 +237,7 @@ public class DriverManager {
     private void setSelenium() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver"));
 
+
     }
 
     public void navigateTo(String url,String  currentDriver) {
@@ -264,20 +265,31 @@ public class DriverManager {
                     driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
                     break;
                 case WEB:
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--no-sandbox"); // Bypass OS security model
+                    chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
 
+                    chromeOptions.addArguments("--verbose");
+                    chromeOptions.addArguments("--whitelisted-ips=''");
+                    chromeOptions.addArguments("--proxy-server=82.80.139.21:7070");
+                    chromeOptions.addArguments("start-maximized"); // open Browser in maximized mode
+                    chromeOptions.addArguments("disable-infobars"); // disabling infobars
+                    chromeOptions.addArguments("--disable-extensions"); // disabling extensions
+                    chromeOptions.addArguments("--disable-gpu"); // applicable to windows os only
+                    chromeOptions.addArguments("--port=9595");
 
                     if (currentDriver.equals("driver")) {
-                        driver = new ChromeDriver();
+                        driver = new ChromeDriver(chromeOptions);
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
-                        driver1 = new ChromeDriver();
+                        driver1 = new ChromeDriver(chromeOptions);
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
-                        driver2 = new ChromeDriver();
+                        driver2 = new ChromeDriver(chromeOptions);
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
