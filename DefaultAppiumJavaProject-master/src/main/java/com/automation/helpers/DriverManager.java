@@ -264,16 +264,22 @@ public class DriverManager {
                 case WEB:
                     if (currentDriver.equals("driver")) {
                         driver = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
                         driver1 = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
                         driver2 = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
