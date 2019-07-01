@@ -236,8 +236,11 @@ public class DriverManager {
 
     private void setSelenium() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver"));
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 235dc18... try add access whitelist
     }
 
     public void navigateTo(String url,String  currentDriver) {
@@ -279,17 +282,35 @@ public class DriverManager {
                     chromeOptions.addArguments("--headless");
 
                     if (currentDriver.equals("driver")) {
+<<<<<<< HEAD
                         driver = new ChromeDriver(chromeOptions);
+=======
+                        driver = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
+>>>>>>> parent of 235dc18... try add access whitelist
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
                     }else if (currentDriver.equals("driver1")){
+<<<<<<< HEAD
                         driver1 = new ChromeDriver(chromeOptions);
+=======
+                        driver1 = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
+>>>>>>> parent of 235dc18... try add access whitelist
                          driver1.manage().window().maximize();
                          driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                          wait = new WebDriverWait(driver1, 10 * 60);
                     }else if (currentDriver.equals("driver2")){
+<<<<<<< HEAD
                         driver2 = new ChromeDriver(chromeOptions);
+=======
+                        driver2 = new ChromeDriver();
+                        driver.clearPreferences();
+                        driver.setup();
+>>>>>>> parent of 235dc18... try add access whitelist
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
