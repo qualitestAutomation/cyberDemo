@@ -153,10 +153,6 @@ public class DriverManager {
         try {
             this.mode = driverMode;
             capabilities = new DesiredCapabilities();
-            capabilities.setCapability("network.proxy.http", "82.80.139.21");
-            capabilities.setCapability("network.proxy.http_port", "7070");
-            capabilities.setCapability("webdriver.chrome.args", Arrays.asList("--verbose --whitelisted-ips=''"));
-
             if (driverMode == DriverMode.WEB) {
                 setSelenium();
             } else {
@@ -267,6 +263,10 @@ public class DriverManager {
                     driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
                     break;
                 case WEB:
+                    capabilities.setCapability("network.proxy.http", "82.80.139.21");
+                    capabilities.setCapability("network.proxy.http_port", "7070");
+                    capabilities.setCapability("webdriver.chrome.args", Arrays.asList("--verbose --whitelisted-ips=''"));
+
                     if (currentDriver.equals("driver")) {
                         driver = new ChromeDriver();
                         driver.manage().window().maximize();
