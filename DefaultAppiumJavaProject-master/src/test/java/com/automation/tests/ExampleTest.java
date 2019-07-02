@@ -143,8 +143,13 @@ public class ExampleTest extends DefaultTestClass {
             login.clicknotregisteryet("driver");
             register.regg("driver");
             login.fillogin(register.email.get(0),"Aa123456","driver",false);
-            WebElement userbutton = driverManager.getCurrentDriver(driverName).findElement(By.id("userMenuButton"));
-            userbutton.click();
+            try {
+                WebElement userbutton = driverManager.getCurrentDriver(driverName).findElement(By.id("userMenuButton"));
+                userbutton.click();
+            }catch (Exception e ){
+                WebElement userbutton = driverManager.getCurrentDriver(driverName).findElement(By.id("userMenuButton"));
+                userbutton.click();
+            }
             Thread.sleep(5000);
             //WebElement trackorders = driverManager.getCurrentDriver(driverName).findElement(By.xpath("//*[@id=\"cdk-overlay-3\"]/div/div/button[4]"));
             WebElement trackorders = driverManager.waitUntilWithCondition ("clickable", By.xpath("//button[contains(text(),' Track Orders ')]"));
