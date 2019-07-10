@@ -157,7 +157,7 @@ public class DriverManager {
     }
 
 
-    public void startDriver(DriverMode driverMode, String udid, String currentDriver) {
+   /* public void startDriver(DriverMode driverMode, String udid, String currentDriver) {
         try {
             this.mode = driverMode;
             capabilities = new DesiredCapabilities();
@@ -187,7 +187,7 @@ public class DriverManager {
 //            saveScreenshot(LogStatus.FATAL, "The driver didn't start." +((e.getMessage() != null) ? e.getMessage(): ""), "Failed");
             throw new RuntimeException("Couldn't start the driver");
         }
-    }
+    }*/
 
     private void setAppium(String udid, String pathToBuildFile) {
         logger.info("taking the capabilities from Json");
@@ -258,7 +258,7 @@ public class DriverManager {
         }
     }
 
-    private void startDriver(String currentDriver) throws InterruptedException {
+    /*public void startDriver(DriverMode mode, String udid, String currentDriver)  {
         synchronized (lock) {
             switch (mode) {
                 case IOS:
@@ -300,8 +300,7 @@ public class DriverManager {
             }
         }
         //Thread.sleep(6000);
-
-    }
+        }*/
 
     private void startAppiumServer() {
         if (!s.isRunning()) {
@@ -1472,7 +1471,7 @@ public class DriverManager {
      return  encode;
     }
 
-    public void startDriver1(DriverMode driverMode, String udid, String currentDriver) throws InterruptedException {
+    public void startDriver(DriverMode driverMode, String udid, String currentDriver) throws InterruptedException {
         synchronized (lock) {
             ChromeOptions options = new ChromeOptions();
             DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -1485,7 +1484,7 @@ public class DriverManager {
             cap.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
             System.out.println("logPrefs: " + logPrefs);
 
-            switch (mode) {
+            switch (driverMode) {
                 case IOS:
                     startAppiumServer();
                     driver = new IOSDriver<WebElement>(s.getUrl(), capabilities);
@@ -1495,6 +1494,7 @@ public class DriverManager {
                     driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
                     break;
                 case WEB:
+                    setSelenium();
                     if (currentDriver.equals("driver")) {
                         driver = new ChromeDriver(cap);
                         driver.manage().window().maximize();
@@ -1563,7 +1563,6 @@ public class DriverManager {
                     }
                 }
             } catch (JSONException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 

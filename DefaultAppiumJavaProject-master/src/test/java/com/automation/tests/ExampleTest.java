@@ -58,7 +58,7 @@ public class ExampleTest extends DefaultTestClass {
             Register register = new Register(driverManager);
             register.regg("driver");
 
-            driverManager.startDriver1(DriverMode.WEB,"","driver1");
+            driverManager.startDriver(DriverMode.WEB,"","driver1");
            driverManager.navigateTo("http://localhost:3000","driver1");
 
             //driverManager.navigateTo("http://localhost:3000","driver1");
@@ -72,7 +72,7 @@ public class ExampleTest extends DefaultTestClass {
             register.regg("driver1");
             login.fillogin(register.email.get(1),"Aa123456","driver1",false);
 
-            driverManager.startDriver1(DriverMode.WEB,"","driver2");
+            driverManager.startDriver(DriverMode.WEB,"","driver2");
            driverManager.navigateTo("http://localhost:3000","driver2");
 
             //driverManager.navigateTo("http://localhost:3000","driver2");
@@ -170,7 +170,7 @@ public class ExampleTest extends DefaultTestClass {
            //  boolean serchurl = driverManager.findLog("%22FROMserch%22",logName,currentTime);
           //   boolean serchbase64 = driverManager.findLog("KioqRlJPTXNlcmNoKioqIg==",logName,currentTime);
           //   boolean serchhexa = driverManager.findLog("2a2a2a46524f4d73657263682a2a2a",logName,currentTime);
-             //  String a = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd”))
+              // String a = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd”)) ;
              boolean coment =  driverManager.findLog("***comment***",logName,currentTime);
             //boolean comenturl = driverManager.findLog("%22coment%22",logName,currentTime);
            // boolean comentbase64 = driverManager.findLog("KioqY29tbWVudCoqKg==",logName,currentTime);

@@ -3,6 +3,7 @@ package com.automation.Pages;
 import com.automation.activities.DefaultActivity;
 import com.automation.helpers.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class Login extends DefaultActivity {
         }
     }
     
-    public void fillogin(String user ,String password,String drivername,boolean checklogin) throws Exception {
+    public void fillogin(String user , String password, String drivername, boolean checklogin) throws Exception {
         WebElement Email = manager.getCurrentDriver(drivername).findElement(By.id("email"));
         Email.sendKeys (user);
 
@@ -47,7 +48,7 @@ public class Login extends DefaultActivity {
         WebElement presslogin = manager.getCurrentDriver(drivername).findElement(By.id("loginButton"));
         System.out.println(user);
         presslogin.click();
-        boolean networking = manager.validateResponseCode(1, manager.driver1);
+        boolean networking = manager.validateResponseCode(1, manager.getCurrentDriver(drivername));
         System.out.println("abcd");
        List<WebElement> logout = manager.getCurrentDriver(drivername).findElements(By.xpath("//*[@id=\"navbarLogoutButton\"]/span"));
        if ((logout.size() > 0)&& checklogin==true)
