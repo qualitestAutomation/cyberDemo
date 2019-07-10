@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static com.automation.helpers.AssertManager.driverManager;
+
 
 public class Login extends DefaultActivity {
     public Login(DriverManager manager) {
@@ -38,16 +40,19 @@ public class Login extends DefaultActivity {
     
     public void fillogin(String user ,String password,String drivername,boolean checklogin) throws Exception {
         WebElement Email = manager.getCurrentDriver(drivername).findElement(By.id("email"));
-        Email.sendKeys(user);
+        Email.sendKeys (user);
 
         WebElement Password = manager.getCurrentDriver(drivername).findElement(By.id("password"));
         Password.sendKeys(password);
         WebElement presslogin = manager.getCurrentDriver(drivername).findElement(By.id("loginButton"));
         System.out.println(user);
         presslogin.click();
+        boolean networking = manager.validateResponseCode(1, manager.driver1);
+        System.out.println("abcd");
        List<WebElement> logout = manager.getCurrentDriver(drivername).findElements(By.xpath("//*[@id=\"navbarLogoutButton\"]/span"));
        if ((logout.size() > 0)&& checklogin==true)
        {
+
            throw new Exception("test faild");
 
        }

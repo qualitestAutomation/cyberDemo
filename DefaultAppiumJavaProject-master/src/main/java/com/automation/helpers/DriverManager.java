@@ -24,6 +24,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,13 +42,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.automation.helpers.ReportManager.lock;
 import static io.appium.java_client.service.local.flags.GeneralServerFlag.SESSION_OVERRIDE;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
+import org.apache.commons.codec.binary.Hex;
 /**
  * Created by mkalash on 2/7/17.
  */
@@ -67,13 +74,13 @@ public class DriverManager {
     public WebDriver getCurrentDriver(String name) {
         if (name.equals("driver"))
             return driver;
-        else if(name.equals("driver1"))
-                return driver1;
+        else if (name.equals("driver1"))
+            return driver1;
         else return driver2;
     }
 
     public WebDriver getCurrentDriver() {
-            return driver;
+        return driver;
     }
 
     public void setCurrentDriver(DriverManager manager) {
@@ -150,7 +157,7 @@ public class DriverManager {
     }
 
 
-    public void startDriver(DriverMode driverMode, String udid,String  currentDriver) {
+    public void startDriver(DriverMode driverMode, String udid, String currentDriver) {
         try {
             this.mode = driverMode;
             capabilities = new DesiredCapabilities();
@@ -169,10 +176,10 @@ public class DriverManager {
             }
             if (currentDriver.equals("driver")) {
                 saveScreenshot(LogStatus.PASS, "The driver started.", "Success");
-            }else if (currentDriver.equals("driver1")) {
-                saveScreenshot(driver1,LogStatus.PASS, "The driver started.", "Success");
-            }else if (currentDriver.equals("driver2")) {
-                saveScreenshot(driver2,LogStatus.PASS, "The driver started.", "Success");
+            } else if (currentDriver.equals("driver1")) {
+                saveScreenshot(driver1, LogStatus.PASS, "The driver started.", "Success");
+            } else if (currentDriver.equals("driver2")) {
+                saveScreenshot(driver2, LogStatus.PASS, "The driver started.", "Success");
             }
 
         } catch (Exception e) {
@@ -235,21 +242,19 @@ public class DriverManager {
     }
 
     private void setSelenium() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver.exe"));
-
-
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/" + (System.getProperty("os.name").toLowerCase().contains("mac") ? "chromedriver_2" : "chromedriver"));
     }
 
-    public void navigateTo(String url,String  currentDriver) {
+    public void navigateTo(String url, String currentDriver) {
         if (currentDriver.equals("driver")) {
             driver.navigate().to(url);
             saveScreenshot(LogStatus.PASS, "Navigating to: " + url, "Success");
-        }else if (currentDriver.equals("driver1")) {
+        } else if (currentDriver.equals("driver1")) {
             driver1.navigate().to(url);
-            saveScreenshot(driver1,LogStatus.PASS, "Navigating to: " + url, "Success");
-        }else if (currentDriver.equals("driver2")){
+            saveScreenshot(driver1, LogStatus.PASS, "Navigating to: " + url, "Success");
+        } else if (currentDriver.equals("driver2")) {
             driver2.navigate().to(url);
-            saveScreenshot(driver2,LogStatus.PASS, "Navigating to: " + url, "Success");
+            saveScreenshot(driver2, LogStatus.PASS, "Navigating to: " + url, "Success");
         }
     }
 
@@ -265,31 +270,24 @@ public class DriverManager {
                     driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
                     break;
                 case WEB:
-                 /*   ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--no-sandbox"); // Bypass OS security model
-                    chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-
-                    chromeOptions.addArguments("--verbose");
-                    chromeOptions.addArguments("--whitelisted-ips=''");
-                    chromeOptions.addArguments("--proxy-server=82.80.139.21:7070");
-                    chromeOptions.addArguments("start-maximized"); // open Browser in maximized mode
-                    chromeOptions.addArguments("disable-infobars"); // disabling infobars
-                    chromeOptions.addArguments("--disable-extensions"); // disabling extensions
-                    chromeOptions.addArguments("--disable-gpu"); // applicable to windows os only
-                    chromeOptions.addArguments("--port=9595");*/
-
-                            if (currentDriver.equals("driver")) {
-                        driver = new ChromeDriver(/*chromeOptions*/);
+                    if (currentDriver.equals("driver")) {
+                        driver = new ChromeDriver();
+//                        driver.clearPreferences();
+//                        driver.setup();
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver, 10 * 60);
-                    }else if (currentDriver.equals("driver1")){
-                        driver1 = new ChromeDriver(/*chromeOptions*/);
-                         driver1.manage().window().maximize();
-                         driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-                         wait = new WebDriverWait(driver1, 10 * 60);
-                    }else if (currentDriver.equals("driver2")){
-                        driver2 = new ChromeDriver(/*chromeOptions*/);
+                    } else if (currentDriver.equals("driver1")) {
+                        driver1 = new ChromeDriver();
+//                        driver.clearPreferences();
+//                        driver.setup();
+                        driver1.manage().window().maximize();
+                        driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+                        wait = new WebDriverWait(driver1, 10 * 60);
+                    } else if (currentDriver.equals("driver2")) {
+                        driver2 = new ChromeDriver();
+//                        driver.clearPreferences();
+//                        driver.setup();
                         driver2.manage().window().maximize();
                         driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                         wait = new WebDriverWait(driver2, 10 * 60);
@@ -1388,7 +1386,7 @@ public class DriverManager {
         }
     }
 
-    private BufferedReader getBufferReader( String fullPathtoFile) throws IOException {
+    private BufferedReader getBufferReader(String fullPathtoFile) throws IOException {
         BufferedReader bufferedReader = null;
 
         // FileReader reads text files in the default encoding.
@@ -1405,6 +1403,7 @@ public class DriverManager {
     public boolean findLog(String whatToFind, String fullPathtoFile, Date currentTime) {
         Boolean found = false;
         BufferedReader bufferedReader = null;
+        String urlEncode = findlogde(whatToFind,"url"),hexEncode = findlogde(whatToFind,"hex") ,base64Encode = findlogde(whatToFind,"base64") ;
         try {
             String line = null;
             // Always wrap FileReader in BufferedReader.
@@ -1416,13 +1415,15 @@ public class DriverManager {
                 m.find();
                 Date fileTime = new SimpleDateFormat("d/MMM/yyyy:HH:mm:ss").parse(m.group(0)/*line.substring(9,29)*/);
 
-                if (line.contains(whatToFind) && (fileTime.after(currentTime))) {
+                if (line.contains(whatToFind)||line.contains(urlEncode) ||line.contains("hexEncode") ||line.contains("base64Encode") && (fileTime.after(currentTime))) {
                     found = true;
                     System.out.println("we found what we are looking" + ' ' + line.toString());
                     return found;
                 }
             }
             System.out.println("we don't found what we are looking");
+
+
 
         } catch (FileNotFoundException ex) {
             logger.info(
@@ -1446,4 +1447,131 @@ public class DriverManager {
         return found;
     }
 
+    public String findlogde(String whatTofind, String dec) {
+        String encode = "";
+        if (dec == "url") {
+            try {
+                encode = URLEncoder.encode(whatTofind, StandardCharsets.UTF_8.toString());
+            } catch (UnsupportedEncodingException ex) {
+                throw new RuntimeException(ex.getCause());
+
+            }
+
+           // System.out.println(encode);
+
+        } else if (dec == "base64") {
+
+            encode =
+                    Base64.getEncoder().withoutPadding().encodeToString(whatTofind.getBytes());
+          //  System.out.println(encode);
+        } else {
+
+            encode = Hex.encodeHexString(whatTofind.getBytes(/* charset */));
+           // System.out.println(encode);
+        }
+     return  encode;
+    }
+
+    public void startDriver1(DriverMode driverMode, String udid, String currentDriver) throws InterruptedException {
+        synchronized (lock) {
+            ChromeOptions options = new ChromeOptions();
+            DesiredCapabilities cap = DesiredCapabilities.chrome();
+            cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+            // set performance logger
+            // this sends Network.enable to chromedriver
+            LoggingPreferences logPrefs = new LoggingPreferences();
+            logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+            cap.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+            System.out.println("logPrefs: " + logPrefs);
+
+            switch (mode) {
+                case IOS:
+                    startAppiumServer();
+                    driver = new IOSDriver<WebElement>(s.getUrl(), capabilities);
+                    break;
+                case ANDROID:
+                    startAppiumServer();
+                    driver = new AndroidDriver<WebElement>(s.getUrl(), capabilities);
+                    break;
+                case WEB:
+                    if (currentDriver.equals("driver")) {
+                        driver = new ChromeDriver(cap);
+                        driver.manage().window().maximize();
+                        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+                        wait = new WebDriverWait(driver, 10 * 60);
+                    }else if (currentDriver.equals("driver1")){
+                        driver1 = new ChromeDriver(cap);
+                        driver1.manage().window().maximize();
+                        driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+                        wait = new WebDriverWait(driver1, 10 * 60);
+                    }else if (currentDriver.equals("driver2")){
+                        driver2 = new ChromeDriver(cap);
+                        driver2.manage().window().maximize();
+                        driver2.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+                        wait = new WebDriverWait(driver2, 10 * 60);
+                    }
+
+                    break;
+            }
+            if (isMobile && !s.isRunning()) {
+                s.start();
+            }
+        }
+        //Thread.sleep(6000);
+
+    }
+
+    public boolean validateResponseCode(int code, WebDriver driver) {
+        boolean correct = false;
+        LogEntries logs = driver.manage().logs().get("performance");
+
+        int status = -1;
+
+        System.out.println("\nList of log entries:\n");
+
+        for (Iterator<LogEntry> it = logs.iterator(); it.hasNext(); ) {
+            LogEntry entry = it.next();
+
+            try {
+                JSONObject json = new JSONObject(entry.getMessage());
+
+                System.out.println(json.toString());
+
+                JSONObject message = json.getJSONObject("message");
+                String method = message.getString("method");
+
+                if (method != null
+                        && "Network.responseReceived".equals(method)) {
+                    JSONObject params = message.getJSONObject("params");
+
+                    JSONObject response = params.getJSONObject("response");
+
+                    status = response.getInt("status");
+
+                    System.out.println("Found status code");
+
+                    System.out.println(
+                            "Found headers: "
+                                    + response.get("headers"));
+
+                    if (status == code) {
+                        correct = true;
+                        System.out.println("Found the correct code");
+                    } else {
+                        System.out.println(" dont Found the correct code");
+                    }
+                }
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+        return correct;
+    }
+
+
+
 }
+
