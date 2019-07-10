@@ -43,7 +43,8 @@ public class ExampleTest extends DefaultTestClass {
     public void ChromeTest() {
         try {
             if (!driverManager.isMobile) {
-                driverManager.navigateTo("http://localhost:3000","driver");
+               // driverManager.navigateTo("http://localhost:3000","driver");
+                driverManager.navigateTo("http://localhost:3333","driver");
               //  driverManager.navigateTo("http://localhost:3000","driver");
             }
             // loginActivity = new LoginActivity(driverManager);
@@ -58,7 +59,8 @@ public class ExampleTest extends DefaultTestClass {
             register.regg("driver");
 
             driverManager.startDriver1(DriverMode.WEB,"","driver1");
-            driverManager.navigateTo("http://localhost:3000","driver1");
+           // driverManager.navigateTo("http://localhost:3000","driver1");
+            driverManager.navigateTo("http://localhost:3333","driver");
             //driverManager.navigateTo("http://localhost:3000","driver1");
 
             //Hompage hompage1 = new Hompage(driverManager);
@@ -71,7 +73,8 @@ public class ExampleTest extends DefaultTestClass {
             login.fillogin(register.email.get(1),"Aa123456","driver1",false);
 
             driverManager.startDriver1(DriverMode.WEB,"","driver2");
-            driverManager.navigateTo("http://localhost:3000","driver2");
+           // driverManager.navigateTo("http://localhost:3000","driver2");
+            driverManager.navigateTo("http://localhost:3333","driver");
             //driverManager.navigateTo("http://localhost:3000","driver2");
             hompage.ClosePopup("driver2");
 
@@ -115,7 +118,8 @@ public class ExampleTest extends DefaultTestClass {
     public void ChromeTest1  () {
         try {
             if (!driverManager.isMobile) {
-               driverManager.navigateTo("http://localhost:3000","driver");
+              // driverManager.navigateTo("http://localhost:3000","driver");
+                driverManager.navigateTo("http://localhost:3333","driver");
               //  driverManager.navigateTo("http://localhost:3000","driver");
 
             }
