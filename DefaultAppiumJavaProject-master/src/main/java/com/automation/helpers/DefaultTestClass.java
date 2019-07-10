@@ -24,7 +24,7 @@ public class DefaultTestClass {
     }
 
     @BeforeMethod()
-    public void beforeMethod(Method method) throws JSONException {
+    public void beforeMethod(Method method) throws JSONException, InterruptedException {
         logger.info("beforeMethod started on thread " + Thread.currentThread().getName());
         driverManager.startReportFile(method.getName(), "Default");
         driverManager.startTest("Appium template", method.getName(), "Functional test");
