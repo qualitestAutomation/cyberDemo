@@ -1536,7 +1536,7 @@ public class DriverManager {
             try {
                 JSONObject json = new JSONObject(entry.getMessage());
 
-                System.out.println(json.toString());
+               // System.out.println(json.toString());
 
                 JSONObject message = json.getJSONObject("message");
                 String method = message.getString("method");
@@ -1551,13 +1551,13 @@ public class DriverManager {
 
                     System.out.println("Found status code");
 
-                    System.out.println(
-                            "Found headers: "
-                                    + response.get("headers"));
+                   // System.out.println(
+                       //     "Found headers: "
+                           //         + response.get("headers"));
 
                     if (status == code) {
                         correct = true;
-                        System.out.println("Found the correct code");
+                        System.out.println("Found the correct code: " + code + response.toString());
                     } else {
                         System.out.println(" dont Found the correct code");
                     }

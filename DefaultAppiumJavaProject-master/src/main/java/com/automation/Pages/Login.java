@@ -48,7 +48,7 @@ public class Login extends DefaultActivity {
         WebElement presslogin = manager.getCurrentDriver(drivername).findElement(By.id("loginButton"));
         System.out.println(user);
         presslogin.click();
-        boolean networking = manager.validateResponseCode(1, manager.getCurrentDriver(drivername));
+        boolean networking = manager.validateResponseCode(200, manager.getCurrentDriver(drivername));
         System.out.println("abcd");
        List<WebElement> logout = manager.getCurrentDriver(drivername).findElements(By.xpath("//*[@id=\"navbarLogoutButton\"]/span"));
        if ((logout.size() > 0)&& checklogin==true)
