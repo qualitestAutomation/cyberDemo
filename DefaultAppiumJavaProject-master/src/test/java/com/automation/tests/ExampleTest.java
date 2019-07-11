@@ -165,7 +165,7 @@ public class ExampleTest extends DefaultTestClass {
            // DriverManager drivermanager = new DriverManager();
            // String logName = "/Users/ehudkon/Downloads/juice-shop-master/logs/access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String logName = "C:\\Users\\User\\Downloads\\juice-shop-master\\logs\\access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-           // String logName = "C:\\Users\\slave\\Downloads\\juice-shop-master\\logs\\access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+           // String logName = "C:\\Users\\slave\\Downloads\\juice-shop-master\\juice-shop-master\\logs\\access.log." + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
              boolean serch = driverManager.findLog("***FROMserch***",logName,currentTime);
            //  boolean serchurl = driverManager.findLog("%22FROMserch%22",logName,currentTime);
